@@ -1,0 +1,21 @@
+ # 这种yaml、yml语言层次用缩进就行，不用想properties那样每次都写那么长。
+ # 像前面的：server.port=8080
+ #          server.servlet.context-path=/spring
+
+ # 可以写成：
+ server:
+   port: 8080
+   servlet:
+     context-path: /spring
+# 注意每次在:后面都有一个空格再写值。第一个前面要有一个空格！！
+
+#一个key有多个，即集合用-空格来写
+ pojo:
+    user:
+      name: Tony
+      age: 18
+      gender: 男
+      friends:
+        - 1
+        - 2
+        - 3

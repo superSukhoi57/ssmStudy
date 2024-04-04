@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--配置bean-->
+     <bean id="the_id" class="com.example.demo.helloword">
+         <property name="name" value="teh_value"></property>
+     </bean>
+    <!--class就是bean的类名（映射）要求类有无参构造器、id是标识这个对象的唯一值，id可以指定多个名字用逗号、空格或分号隔开,
+    property里面name的值只能是类里边setXxx方法的xxx，代表的是类的方法，！！！！
+    value指的就是name对应方法的参数值！！
+
+    属性注入：(上面)
+    就是通过setter方法使用property元素的name指定Bean的属性名称，value指定属性值。
+
+    构造器注入：（下面）
+    类的构造函数带参数，<constructor-arg 会将参数按顺序复制给Bean或者通过index来指定参数或者type指定参数类型！
+    大标签写不下就在里面写小标签嵌套，如果包含特殊字符用<![CDATA[<特殊字符>]]]>
+    ref可以建立bean的联系
+    -->
+    <bean id="the_car" class="com.example.demo.Car">
+        <constructor-arg value="11"></constructor-arg>
+        <constructor-arg value="truck"></constructor-arg>
+        <constructor-arg >
+            <value><![CDATA[<xxxx>]]]></value>
+        </constructor-arg>
+    </bean>
+<!--ref建立Bean的联系！-->
+    <bean id="person" class="com.example.demo.People" >
+        <property name="bench" ref="the_car"></property>
+    </bean>
+<!--内部Bean-->
+    <bean id="richer" class="com.example.demo.People">
+        <property name="bench">
+            <bean id="内部bean的id写了也没用，因为外部拿不到!" class="com.example.demo.Car">
+               <constructor-arg value="car" index="1"></constructor-arg>
+                <constructor-arg value="200000" type="int"></constructor-arg>
+                <constructor-arg value="德国" index="2"></constructor-arg>
+            </bean>
+        </property>
+    </bean>
+<!--支持级联属性-->
+  <!--  <bean id="Jerry" class="com.example.demo.People">
+       <constructor-arg ref="the_car"></constructor-arg>
+       <property name="bench.price" value="2"></property>
+    </bean>-->
+</beans>

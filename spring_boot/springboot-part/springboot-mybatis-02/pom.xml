@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>springboot-mybatis-02</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--TODO:启动器里面所有的依赖里面的类spingboot已经自动帮我们加入到ioc容器了，我们直接用就行！-->
+    <!--———将一个工程继承springboot启动器基础包就可以使这个过程变成springboot工程—————-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.8</version>
+    </parent>
+
+    <!--——————导入对应的启动类（就是依赖的整合包）——————-->
+    <dependencies>
+        <!--不用写版本，因为父工程帮我们写好了。导入依赖注解写进来就行！-->
+        <dependency>
+            <!--这个启动类就有springMVC的全部依赖！，可以点进去看！-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <!--TODO:AOP注解！-->
+        </dependency>
+
+
+        <!--————————————————————TODO：整合druid导入的依赖——————————————————————————-->
+        <dependency>
+            <!--数据库相关启动器，jdbcTemplate事务相关！-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <!--druid启动器-->
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-3-starter</artifactId>
+            <version>1.2.22</version>
+        </dependency>
+        <dependency>
+            <!--mysql驱动-->
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
+        </dependency>
+        <!--—————————————————————————————end of druid———————————————————————————————————————-->
+
+        <!--mybatis依赖：-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <!--tools-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+    </dependencies>
+    <!--———————————————添加打包插件—————————————————-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

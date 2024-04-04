@@ -1,0 +1,16 @@
+# druid连接池数据配置信息！！
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/bookmanagesys
+      username: root
+      password: newbee
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #使用控制台输出sql语句。
+
+

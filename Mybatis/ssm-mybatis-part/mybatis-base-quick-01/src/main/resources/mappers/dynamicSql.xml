@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.EmployeeMapper">
+
+    <!--FIXME：动态查询语句！！
+List<Employee> query(@Param("name")String name, @Param("salary") Double salary);
+如果传入屆性,就判断相等,如果不传入,不加对应的条件
+where
+if 判断传入的参数,最终是否添加语句
+    test属性 内部做比较运算,最终true将标签内的sql语句进行拼接;false不拼接标签内部语句
+    判断语句:”key比较符号值and|or key 比较符号 值”
+    大于和小于不推荐直接写符号!实体符号html>==&gt;< &lt;
+    问题:
+        假如两个都满足 where empname =#{name} and emp_salary=#{salary}
+        假如第一个满足 where
+        假如第一个不满足,第二个满足 where and emp_salary = #{salary}错误
+        假如都不满足 where
+    where标签的作用有两个:
+        1.自动添加where关键字 where内部有任何一个i满足,自动添加where关键字,不满足去掉where!
+        2.自动去掉多余的and 和or 关键字
+     set标签的作用：
+        1.自动去除多余的，
+        2.自动添加set关键字，用法和where一样
+     choose/when/otherwise 标签
+        在多个分支条件中，仅执行一个
+        从上到下依次执行条件判断
+        遇到的第一个满足条件的分支会被采纳
+        被采纳分支后面的分支都将不被考虑
+        如果所有的 when 分支都不满足，那么就执行 otherwise 分支
+                where
+                <choose>
+                    <when test="empName != null">emp_name=#{empName}</when>
+                    <when test="empSalary &lt; 3000">emp_salary &lt; 3000</when>
+                    <otherwise>1=1</otherwise>
+                </choose>
+
+       foreach标签：
+            select
+            from temp
+            where emp id in
+                 遍历的数据
+                (1,2,3)
+                collection="ids|arg0|list'写集合名。
+                open 遍历之前要追加的字符串
+                close 遍历结束需要添加的字符串
+                separator每次遍历的分割符号!如果是最后一次，不会追加item 获取每个遍历项
+                例子：
+                <foreach collection="ids" open="(" separator="," close=")" item="id">
+                    遍历的内容，遍历项 item指定的key
+                    #{id}
+                </foreach>
+
+            </select>-->
+    <select id="queryById" resultType="com.example.pojo.dynamicSql">
+        select from 修仙book
+            <where>
+                <if test="id!=null">
+                    id=#{id}
+                </if>
+                <if test="price!=null">
+                    and peice=#{price}
+                </if>
+            </where>
+    </select>
+</mapper>

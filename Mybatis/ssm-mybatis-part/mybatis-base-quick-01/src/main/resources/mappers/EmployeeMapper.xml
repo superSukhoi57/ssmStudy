@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace等于mapper接口类的全限定名-->
+<mapper namespace="com.example.mapper.EmployeeMapper">
+    <!--——————————————有crud的方法！！！——————————————-->
+
+    <!--查询使用 select标签
+    id =方法名(来自接口！！！)
+    resultType =返回值类型标签内编写SQL语句，应该是像之前那样将结果集赋值给每个类形成List！！！
+    mapper接口不能重载！！
+    -->
+    <select id="queryByPrice" resultType="com.example.pojo.Employee">
+        <!--TODO：返回值类型的详细信息。
+            在查询的语句中要指定输出类型：resultType
+            场景1:返回单个简单类型如何指定resultType的写法!返回值的数据类型!!resultType语法:
+            类的全限定符号
+            别名简称
+            mybatis给我们提供了72种默认的别名!
+            这些都是我们常用的Java数据类型![java的常用数据类型]基本数据类型int double >int double
+            包装数据类型 Integer Double->int integer double
+            集合容器类型 Map List HashMap->小写即可map list hashmap
+
+            如果没有没有提供的需要自己定义或者写类的全限定符号，也可以给自己的类起别名，见官方文档。
+            1.<typeAliases>
+                ……
+                <typeAlias alias="Tag" type="domain.blog.Tag"/>
+            </typeAliases>
+            2.批量起别名……批量起别名再自定义类型。
+
+
+        返回值类型的列名要和类的属性名相同才会自动映射
+        如果返回的是map类型，map的key就是查询的列名，value就是查询的值！
+        返回值是List类型的：（resultType不需要指定list要指定泛型！）
+
+        增加主键：<insert id="insertEmp" useGeneratedKeys-"true" keyColumn="emp id" keyProperty="empId">
+        useGeneratedKeysf"true”我们想要数据库自动增强的主键值!
+        keyColumn="emp iá"主键列的值!
+        keyProperty="empId”接收主键列值的属性!!!
+        -->
+
+
+        <!-- #{empId}代表动态传入的参数,并且进行赋值!后面详细讲解
+            * #{ key } :占位符+赋值，安全性更好
+            * ${ key } :字符串拼接，会引起注入攻击
+            但占位符只能替代条件的……，不能替代容器名（标签，表，列名，sql关键字）
+            实际上她两可以一起使用！
+            select……where ${xxx} = #{yyy};
+
+
+
+            1.接口的参数只有一个而且是简单类型crud的参数随便写
+
+
+            2: 传入的是一个实体对象key 如何写?
+                key=类的属性名即可!!
+                insert into t_emp(emp_name,emp_salary)values(#{empName},#{empSalary});
+
+
+            3. 多个值！不能随便写也不能用参数名称获取！！
+                方案1：
+                List<Employee> queryByNameAndSalary(@Param("a")String name, @Param("b")Double salary);
+                ……from temp where emp_name =#f{a}and emp_salary =#f{b}
+
+                方案2：
+                用mybatis的默认机制，形参从左到右用arg0，arg1……（从0开始）；来替代或param1，param2……（从1起开始）
+                ……from temp where emp_name =#f{arg0}and emp_salary =#f{param2}
+
+                方案3：
+                在setting标签里面开启驼峰映射。
+
+                方案4：
+                - resultType按照规则自动映射，按照是否开启驼峰映射，只能映射一层结构。所以在多表查询时不能映射。
+                - 声明resultMap标签,自己定义映射规则.可以在里面定义嵌套映射,映射也是单层的，配置文件的setting标签autoMappingBehavior调成FULL就可以多层映射。
+                    id标识->select resultMap="标识”
+                    type->具体的返回值类型全限定符和别名|集合只写泛型即可
+                        <id 主键映射关系
+                        <result 普通列的映射关系
+
+                            <resultMap id="tMap" type="teacher">
+                                <id column="t_id" property="tId" >
+                                <result column='t name" property"tName"/>
+
+                                    对象属性赋值(对一)
+                                    property 对象属性名
+                                    javaType 对象类型,类的全限定名或者别名。
+                                    <association property="customer" javaType="customer">
+                                        <id column="customer id" property="customerId" />
+                                        <result column="customer name" property="customerName" />
+                                    </association>
+
+                                    对象集合赋值、list（对多）
+                                    <collection property="orderList"ofType="order">
+                                        <id column="order id" property="orderId" />
+                                        <result column="order name" property="orderName" />
+                                        <result column="customer id" property="customerId" />
+                                    </collection>
+                            </resultMap>
+
+                    <select id="queryByPrice" resultMap="tMap>">
+                        sql语句#{tId}
+                    </select>
+
+        -->
+
+        select number,name,price from 修仙book where price=#{empId}
+    </select>
+</mapper>

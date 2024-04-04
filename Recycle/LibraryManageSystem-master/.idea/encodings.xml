@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/lib/MySQL Commend Line.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/DataBase/TableOperate.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/MainInterface.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/Manager/InsertBook.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/Manager/ManagerInterface.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/Manager/State.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/Manager/State_Information.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/Manager/UpdateBook.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/Run.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/Static/Information.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/User/BorrowBook.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/User/BorrowBook_Information.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/User/PersonalInformation.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/User/ProlongBook.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/User/ReturnBook.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/littleheap/User/UserInterface.java" charset="GBK" />
+  </component>
+</project>

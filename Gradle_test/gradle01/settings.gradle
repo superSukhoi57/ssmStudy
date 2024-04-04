@@ -1,0 +1,3 @@
+rootProject.name = 'gradle01'
+include 'son_gradle'//这里就是字子工程！！！
+

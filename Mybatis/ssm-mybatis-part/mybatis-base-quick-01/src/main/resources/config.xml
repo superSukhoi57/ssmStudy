@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+    <settings>
+        <!--匹配某些特定功能，这里开启日志功能，详细请见官方文档！-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--开启驼峰自动映射，数据库 xx_yyy映射到java：xxYyy-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--开启resultMap自动映射-->
+        <setting name="autoMappingBehavior" value="FULL"/>
+    </settings>
+
+
+    <!--environments表示配置Mybatis的开发环境，可以配置多个环境，在众多具体环境中，使用default属性指定实际运行时使用的环境-->
+    <environments default="development">
+    <!--environment表示配置Mybatis的一个具体的环境-->
+    <environment id="development">
+    <!--Mybatis的内置的事务管理器-->
+    <transactionManager type="JDBC"/>
+    <!--配智数据源
+        pooled：让mybatis帮我们维护一个连接池||unpooled：每次都新建和释放连接。-->
+    <dataSource type="POOLED">
+        <!--建立数据库连接的具体信息-->
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <!--FIXME：配置允许多语句执行
+           在jdbc:mysql://localhost:3306/bookmanagesys的后面加？在加allowMultiQueries=true
+           然后就可以在foreach标签里面
+           <foreach collection="List" ……
+                sql语句
+           </foreach>
+        -->
+        <property name="url" value="jdbc:mysql://localhost:3306/bookmanagesys"/>
+        <property name="username" value="root"/>
+        <property name="password" value="newbee"/>
+    </dataSource>
+</environment>
+</environments>
+<mappers>
+    <!--Mapper注册:指定Mybatis映射文件的具体位置-->
+    <!--mapper标签:配置一个具体的Mapper映射文件-->
+    <!-- resource属性:指定Mapper映射文件的实际存储位置，这里需要使用一个以类路径根目录为基准的相对路径 -->
+    <!--对Maven工程的目录结构来说，resources目录下的内容会直接放入类路径，所以这里我们可以以resources目录为基准-->
+    <mapper resource="mappers/EmployeeMapper.xml"/>
+    <mapper resource="mappers/ibatis.xml"/>
+    <!--
+    FIXME：批量mapper指定
+1.要求Mapperxml文件和mapper接口的命名必须相同
+2.最终打包后的位置要一致 都是指定的包地址下!
+
+方案1:xml文件也加入到接口所在的包，并且指定pom.xml文件的打包行为！！
+   2:resources文件夹创建对应的文件夹结构即可com.example.mapper里面放xml文件就可以和java文件一起打包！
+
+   <package name="com.example.xxxxx"/>
+    -->
+
+</mappers>
+</configuration>
+
+
+<!--
+TODO:mybatis配置步骤：
+1. 创建一个interface来作为被映射的接口，里面写方法；
+2. 创建这个类对应的mapper.xml文件配置指定到我们要的interface就行，再在里面的标签写我们的crud语句！！但不能重载方法，因为每个crud语句根据方法名识别interface的方法。（一般在resources目录里面教新建一个专门储存这个的目录。）**这里我们可以看到，接口的实现都在xml那里，所以我们在代码里不用实现类的接口，配置好后直接拿过来就可以用了，spring、mybatis会自动化。。。**
+3. 创建Mybatis框架的配置文件。（一般放在resources下）然后要在mappers标签指定我们第二步创建xml文件的位置！
+-->

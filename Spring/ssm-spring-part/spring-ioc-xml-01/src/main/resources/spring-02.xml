@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!--
+    singleton:在容器中，这个 bean 的对象始终为单实例    时间：容器初始化时
+    prototype:这个 bean 在 IOC 容器中有多个实例        时间：获取bean时，就是每次getbean时的对象是不同的。。
+
+    如果是在 WebApplicationContext 环境下还会有另外两个作用域(但不常用)
+    request：请求范围内有效的实例  时间：每次请求
+    session：会话范围内有效的实例  时间：每次会话
+       -->
+    <bean id="periodmethod" class="com.example.ioc_02.periodicMethod"
+          init-method="initialize" destroy-method="destroy" scope="prototype"/>
+
+</beans>

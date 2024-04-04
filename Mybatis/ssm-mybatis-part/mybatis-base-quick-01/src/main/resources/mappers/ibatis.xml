@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="randomly.xx">
+    <!--写crud语句！！-->
+    <select id="man" resultType="com.example.pojo.ikun">
+        <!-- #{empId}代表动态传入的参数,并且进行赋值!后面详细讲解-->
+        select number,name,price from 修仙book where price=#{empId}
+    </select>
+
+    <!--FIXME:非自增长主键维护（就是怎么让每次插入的主键的值唯一！）
+<insert id="insertTeacher">
+    插入之前,先指定一段sql语句,生成一个主键值!
+    order="beforelafter”sql语句是在插入语句之前还是之后执行!
+    resultType =返回值类型
+    keyProperty=查询结果给哪个属性赋值
+//自己维护主键在java代码中：
+    String id = UUID.randomUUID().toString().replaceALL("_”,##)
+    teacher.settId(id);
+
+    //UUID就是生成不重复的字符串，里面有-连接！，所以要将它替换成空
+    <selectKey order="BEFORE" resultType="string" keyProperty="tId">
+        SELECTREPLACE(UUID(),"-","");
+    </selectKey>
+
+        INSERT INTO teacher(t id,t name)VALUE(#{tId},#{tName});
+</insert>
+
+    -->
+</mapper>
+
+        <!--FIXME:使用ibatis操作数据库，
+            在3.x版本后更名为mybatis（对ibatis的封装和优化）
+               ibatis方式进行数据库操作
+            1.不要求你写接口
+            2.直接创建mapper.xml文件内部编写sql语句
+            3.namespace 没有任何要求，随意声明一个字符串即可
+            4.namespqce标签没有什要求，随便写一个名字就行。
+        -->

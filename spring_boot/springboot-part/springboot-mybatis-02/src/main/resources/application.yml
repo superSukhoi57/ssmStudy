@@ -1,0 +1,21 @@
+# druid连接池数据配置信息！！
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource #使用druid连按池
+    #username:账号#如果你springboot2整合druid连接池!使用此信息配置账号和password:
+    druid:
+      url: jdbc:mysql://localhost:3306/bookmanagesys
+      username: root
+      password: newbee
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+# mybatis配置信息，彻底抛弃mybatis-config.xml
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml  #TODO:注意他的写法！指定xml文件
+  type-aliases-package: com.example.pojo
+  configuration:
+    auto-mapping-behavior: full
+    map-underscore-to-camel-case: true
+
+
+

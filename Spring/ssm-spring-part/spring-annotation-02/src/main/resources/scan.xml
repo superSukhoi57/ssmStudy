@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+
+    在classpath中扫描组件
+
+在使用注解后，还需要在Spring配置文件\<context:component-scan>
+
+base-package属性指定一个需要扫描的包，Spring会扫扫描这个基类包里及其子包中的所有类，当需要扫描多个包时可以用逗号隔开。
+base-pakage="包1，包2……"
+他会扫描包所有的文件和它的子包！
+
+可以使用resource-pattern属性指定扫描资源。
+
+```xml
+<context:component-scan
+	base-pakage="xxxx.xxxx"
+    resource-pattern="yyyy.yyyy"/>
+```
+
+\<context:include-filter>子节点包含目标类
+
+\<context:exclude-filter>子节点表示要排除在外的目标类
+
+\<context:component-scan>元素还会自动装配具有@Autowired、@Resource和@Inject注解属性。
+
+
+    -->
+    <context:component-scan base-package="com.example.configuartion_test"/>
+</beans>

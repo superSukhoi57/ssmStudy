@@ -1,0 +1,50 @@
+<!--TODO：此文件是springMVC整合mybatis的外部配置类，由于在引用时出现我暂时解决不了的BUG，已作废，来日再修！
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+
+    &lt;!&ndash;
+    FIXME：mvc整合mybatius是mybatis配置文件怎么写。
+    在这里mapper接口指定包、 数据库连接信息和连接池不用写！
+    连接池用DruidDataSource，其他配置信息照写！！
+    &ndash;&gt;
+
+    <settings>
+        &lt;!&ndash;匹配某些特定功能，这里开启日志功能，详细请见官方文档！&ndash;&gt;
+        <setting name="logImpl" value="SLF4J"/>
+        &lt;!&ndash;开启驼峰自动映射，数据库 xx_yyy映射到java：xxYyy&ndash;&gt;
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        &lt;!&ndash;开启自动映射&ndash;&gt;
+        <setting name="autoMappingBehavior" value="FULL"/>
+    </settings>
+
+
+    <typeAliases>
+        &lt;!&ndash;给实体类起别名&ndash;&gt;
+        <package name="com.example.pojo"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            &lt;!&ndash;
+            helperDialect:分页插件会自动检测当前的数据库链接，自动选择合适的分页方式。
+            你可以配置helperDialect届性来指定分页插件使用哪种方言。
+            配置时，可以使用下面的缩写值:oracle,mysql,mariadb,sqlite,hsqldb,postgresql,db2,sqlserver,informix,h2,sqlserver2012,derby(定整内容看PageAutoDialect)
+            特别注意:使用5qlServer2012数据库时https: //gi thub. com/pagehelper/Mvbatis-PageHelper/blob/master/wikis/zh/HowToUse.md#XE5%A6%82%E4%BDX95%E9
+            &ndash;&gt;
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+</configuration>
+
+
+
+        &lt;!&ndash;
+        TODO:mybatis配置步骤：
+        1. 创建一个interface来作为被映射的接口，里面写方法；
+        2. 创建这个类对应的mapper.xml文件配置指定到我们要的interface就行，再在里面的标签写我们的crud语句！！但不能重载方法，因为每个crud语句根据方法名识别interface的方法。（一般在resources目录里面教新建一个专门储存这个的目录。）**这里我们可以看到，接口的实现都在xml那里，所以我们在代码里不用实现类的接口，配置好后直接拿过来就可以用了，spring、mybatis会自动化。。。**
+        3. 创建Mybatis框架的配置文件。（一般放在resources下）然后要在mappers标签指定我们第二步创建xml文件的位置！
+        &ndash;&gt;-->

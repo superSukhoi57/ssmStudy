@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cntext="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--读取外部配置文件，.properties用${key}就可以传递参数！！
+    注意xmlns:cntext="http://www.springframework.org/schema/context"命名空间的后面是context！！！！！-->
+
+    <cntext:property-placeholder location="jdbc.properties"/>
+
+
+
+    <!--直接调用IOC配置依赖的类，再通过。。给他们传递参数就行-->
+
+    <!--这是没有引用外部配置文件的写法！！！
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" >
+    <property name="url" value="jdbc:mysql:///studb" />
+    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+    <property name="username" value="root"/>
+    <property name="password" value="newbee"/>
+    </bean>
+    -->
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" >
+        <property name="url" value="${my.url}" />
+        <property name="driverClassName" value="${my.driver}" />
+        <property name="username" value="${my.username}"/>
+        <property name="password" value="${my.password}"/>
+    </bean>
+
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>
